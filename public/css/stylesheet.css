@@ -6,9 +6,9 @@ h1 {
   font-size: 50px;
   color: #e6f2ff;
   z-index: 9;
-  position: absolute;
+  position: absolute;;
   top: 50px;
-  left: 245px;
+  left: 470px;
 }
 
 h2, h3 {
@@ -27,6 +27,7 @@ img {
 .container {
   background-color: #eaeedd;
   margin-top: 5px;
+  width: 1000px;
 }
 
 .smallButton {
