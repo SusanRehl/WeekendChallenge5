@@ -3,29 +3,32 @@
  <head>
    <meta charset="utf-8">
    <title>Pets Viewer</title>
+    <link rel="stylesheet" href="css/stylesheet.css" charset="utf-8">
    <script src="vendors/angular.min.js" type="text/javascript"></script>
    <script src="scripts/script.js" type="text/javascript"></script>
  </head>
  <body>
    <div ng-controller = 'petController' ng-init='init()'>
-   <h1>The Pets of Nu Cohort</h1>
-   <h2>View The Pets</h2>
-    <button type="button" name="button" ng-click= "getPets()" >View Pets</button>
-    <p></p>
-       <h2>Add Your Pet!</h2>
+     <img ng-src="https://s32.postimg.org/szn2qch5h/catanddog.jpg"></img>
+     <h1>The Pets of Nu Cohort</h1>
+     <button type="button" name="button" class="viewbutton" ng-click= "getPets()" >View the Pets</button>
+     <p></p>
+     <h2>Add Your Pet!</h2>
      <input type= "text" ng-model= "petNameBinder" value= "" placeholder="pet name" required>
      <input type= "text" ng-model= "petAnimalBinder" value= "" placeholder="type of animal">
      <input type= "text" ng-model= "petAgeBinder" value= "" placeholder="pet age">
      <input type= "text" ng-model= "imageBinder" value= "" placeholder="pet image url">
-     <button type="button" name="subButton" ng-click= "addPet()" >Add Your Pet</button><br />
-    <p>The Pets of NU</p>
-     <p ng-repeat='record in allThePets'>
-    <img ng-src='{{record.image}}'>
-     {{ record.name}}<br />
-     Animal: {{ record.animal}}  Age: {{ record.age}}
-     <button type="button" name="delButton" ng-click="deletePet()">Delete Pet</button>
-   </p>
-
- </div>
- </body>
+     <button type="button" name="subButton" class="smallButton" ng-click= "addPet()" >Add Your Pet</button><br />
+     <h2>The Pets of NU</h2>
+     <div align="center">
+       <p ng-repeat='record in allThePets'>
+         <img ng-src='{{record.image}}'><br />
+         <b>{{ record.name }}</b><br />
+         animal: {{ record.animal}} ~ age: {{ record.age}} <br />
+         <button type="button" name="delButton"  class="smallButton" ng-click="deletePet()">Delete Pet</button>
+         </p>
+         <p> </p>
+      </div>
+    </div>
+</body>
 </html>

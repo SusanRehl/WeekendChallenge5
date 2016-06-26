@@ -14,7 +14,7 @@ app.get( '/', function( req, res ){    // set basic url
 });
 
 app.get( '/view', function( req, res ){  // GET function to retrieve data
-  petscollection.find() // This is where the magic happens - all new and existing are found here
+  petscollection.find() // MAGIC! - all new and existing are found here
   .then( function( data ){  // similar to ajax get call - if found, then run function with data as parameter
     // console.log("data from app" + data);
     res.send( data );  // returns records as "data"
@@ -37,7 +37,7 @@ app.post( '/add', function( req, res ){  // POST call
   console.log("new record from app.post: " + newRecord);
 });  // end post
 
-app.delete('/deletePet', function(req, res) {
+app.delete('/deletePet', function(req, res) {  // delete pet - DOES NOT WORK
   console.log('delete route');
   petscollection.find({name: 'Vito'}, function(err, petResult) {
     if(err){
@@ -50,5 +50,6 @@ app.delete('/deletePet', function(req, res) {
     } //end if else
   }); //end find
 }); // end delete
+//
 
 app.use( express.static( 'public' ) );  // make public folder available

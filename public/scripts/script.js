@@ -35,9 +35,8 @@ myApp.controller( 'petController', [ '$scope', '$http', function( $scope, $http)
   }); // end error function
   }; // end getPets function
 
-  
 
-  // $scope.removePet = function(petId){ // deletes record on button click
+  // $scope.removePet = function(petId){ // deletes record on button click - DOES NOT WORK
   //   $http({  // removes object via REMOVE
   //     method: 'DELETE',
   //     url: '/petscollection/' + petId,
@@ -53,7 +52,7 @@ myApp.controller( 'petController', [ '$scope', '$http', function( $scope, $http)
 
 }]); // end controller
 
-angular.module('app', []) // runs function upon page load DOES NOT WORK
+angular.module('app', []) // runs function upon page load - DOES NOT APPEAR TO BE DOING ANYTHING- SHIFTLESS LAZY BIT OF CODE..
   .controller('petsController', ['$scope', function($scope) {
     $scope.getPets();
 }]); // end page load function
