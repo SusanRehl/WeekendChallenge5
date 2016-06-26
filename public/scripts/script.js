@@ -23,7 +23,7 @@ myApp.controller( 'petController', [ '$scope', '$http', function( $scope, $http)
     $scope.getPets(); // calls get pets function to refresh DOM
   }; // end addPets function
 
-  $scope.getPets = function(){  // gets current recordset upon button click
+  $scope.getPets = function(){  // gets current recordset upon page load
     $http({   // gets recordset via GET
       method: 'GET',
       url: '/view',
@@ -36,19 +36,19 @@ myApp.controller( 'petController', [ '$scope', '$http', function( $scope, $http)
   }; // end getPets function
 
 
-  // $scope.removePet = function(petId){ // deletes record on button click - DOES NOT WORK
-  //   $http({  // removes object via REMOVE
-  //     method: 'DELETE',
-  //     url: '/petscollection/' + petId,
-  //   }); // end remove call
-  //   success(function (data) {  // success message
-  //       $scope.status = "Pet Deleted";
-  //       $scope.getPets(); // calls get pets function to refresh DOM
-  //   }) //end success
-  //   .error(function (error) {  // error message
-  //       $scope.status = 'Unable to delete pet: ' + error.message;
-    // }); //end error
-  // }; // end deletePets function
+  $scope.removePet = function(petId){ // deletes record on button click - DOES NOT WORK
+    $http({  // removes object via REMOVE
+      method: 'DELETE',
+      url: '/nupets/' + petId,
+    }); // end remove call
+    success(function (data) {  // success message
+        $scope.status = "Pet Deleted";
+        $scope.getPets(); // calls get pets function to refresh DOM
+    }) //end success
+    .error(function (error) {  // error message
+        $scope.status = 'Unable to delete pet: ' + error.message;
+    }); //end error
+  }; // end deletePets function
 
 }]); // end controller
 

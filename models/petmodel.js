@@ -7,6 +7,6 @@ var ourSchema = new mongoose.Schema({  // set up new mongoose schema
   image: String
 });
 
-var petscollection = mongoose.model( 'petscollection', ourSchema );  // sets schema to model var
+var nupets = mongoose.model( 'nupets', ourSchema );  // sets schema to model var
 
-module.exports=petscollection;
+module.exports=nupets;

@@ -2,7 +2,7 @@ var express = require('express');  // require express
 var app=express();
 var path = require('path');  // sets up basic path
 var bodyParser = require('body-parser');  // require bodyparser for POST calls
-var petscollection=require('../models/petmodel.js');  // requiring the assignments model
+var nupets=require('../models/petmodel.js');  // requiring the petmodel.js model
 var mongoose = require('mongoose');  // require mongoose for mongo db
 
 app.use( bodyParser.json() );
@@ -14,7 +14,7 @@ app.get( '/', function( req, res ){    // set basic url
 });
 
 app.get( '/view', function( req, res ){  // GET function to retrieve data
-  petscollection.find() // MAGIC! - all new and existing are found here
+  nupets.find() // MAGIC! - all new and existing are found here
   .then( function( data ){  // similar to ajax get call - if found, then run function with data as parameter
     // console.log("data from app" + data);
     res.send( data );  // returns records as "data"
@@ -32,20 +32,20 @@ app.post( '/add', function( req, res ){  // POST call
     age: req.body.age,
     image: req.body.image
   };  // end var
-  var newRecord=petscollection( recordToAdd );  // saves record to database
+  var newRecord=nupets( recordToAdd );  // saves record to database
   newRecord.save();
   console.log("new record from app.post: " + newRecord);
 });  // end post
 
 app.delete('/deletePet', function(req, res) {  // delete pet - DOES NOT WORK
   console.log('delete route');
-  petscollection.find({name: 'Vito'}, function(err, petResult) {
+  nupets.find({_id: _id}, function(err, petResult) {
     if(err){
       console.log(err);
       res.sendStatus(500);
     } else{
       console.log("in pet delete");
-      petscollection.remove({_id: petResult._id}, function(err) {});
+      nupets.remove({_id: petResult._id}, function(err) {});
       res.sendStatus(200);
     } //end if else
   }); //end find
