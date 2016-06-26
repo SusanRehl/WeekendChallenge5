@@ -23,6 +23,8 @@ myApp.controller( 'petController', [ '$scope', '$http', function( $scope, $http)
     $scope.getPets(); // calls get pets function to refresh DOM
   }; // end addPets function
 
+var pets;
+
   $scope.getPets = function(){  // gets current recordset upon page load
     $http({   // gets recordset via GET
       method: 'GET',
@@ -30,16 +32,18 @@ myApp.controller( 'petController', [ '$scope', '$http', function( $scope, $http)
     }).then( function( response ){  // success call - runs function with response parameter
       console.log(response);
       $scope.allThePets = response.data;  // pulls the data from app.js and sets to allThePets
+      pets = $scope.allThePets; // creates global var for use in deleting
     }, function myError( response ){
   console.log( response.statusText );
   }); // end error function
   }; // end getPets function
 
-
-  $scope.removePet = function(petId){ // deletes record on button click - DOES NOT WORK
-    $http({  // removes object via REMOVE
+  $scope.deletePet = function(index){ // deletes pet on button click - DOES NOT WORK
+    console.log('deleted pet clicked ');
+    $scope.pets.splice( index, 1 );
+    $http({  // removes object via DELETE
       method: 'DELETE',
-      url: '/nupets/' + petId,
+      url: '/nupets/' + index,
     }); // end remove call
     success(function (data) {  // success message
         $scope.status = "Pet Deleted";
@@ -50,9 +54,11 @@ myApp.controller( 'petController', [ '$scope', '$http', function( $scope, $http)
     }); //end error
   }; // end deletePets function
 
+
+
 }]); // end controller
 
-angular.module('app', []) // runs function upon page load - DOES NOT APPEAR TO BE DOING ANYTHING- SHIFTLESS LAZY BIT OF CODE..
-  .controller('petsController', ['$scope', function($scope) {
-    $scope.getPets();
-}]); // end page load function
+// angular.module('app', []) // runs function upon page load - DOES NOT APPEAR TO BE DOING ANYTHING- SHIFTLESS LAZY BIT OF CODE..
+//   .controller('petsController', ['$scope', function($scope) {
+//     $scope.getPets();
+// }]); // end page load function

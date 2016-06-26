@@ -3,6 +3,7 @@
  <head>
    <meta charset="utf-8">
    <title>Pets Viewer</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" charset="utf-8">
     <link rel="stylesheet" href="css/stylesheet.css" charset="utf-8">
    <script src="vendors/angular.min.js" type="text/javascript"></script>
    <script src="scripts/script.js" type="text/javascript"></script>
@@ -18,14 +19,19 @@
      <input type= "text" ng-model= "petAgeBinder" value= "" placeholder="pet age">
      <input type= "text" ng-model= "imageBinder" value= "" placeholder="pet image url">
      <button type="button" name="subButton" class="smallButton" ng-click= "addPet()" >Add Your Pet</button><br />
-     <h2>The Pets of NU</h2>
-       <p ng-repeat='record in allThePets'>
-         <img ng-src='{{record.image}}'><br />
-         <b>{{ record.name }}</b><br />
-         {{ record.age}} year old {{ record.animal}}<br />
-         <button type="button" name="delButton"  class="smallButton" ng-click="deletePet()">Delete Pet</button>
-         </p>
-         <p> </p>
+     <div class="container">
+        <h2>The Pets of Nu</h2>
+        <p></p>
+        <div class="row">
+          <div class="petRecord col-md-4" ng-repeat='record in allThePets'>
+            <img ng-src='{{record.image}}'><br />
+            <b>{{ record.name }}</b><br />
+            {{ record.age}} year old {{ record.animal}}<br />
+            <button type="button" name="delButton"  class="smallButton" ng-click="deletePet()">Delete Pet</button>
+            <p> </p>
+          </div>
+        </div>
+      </div>
     </div>
 </body>
 </html>

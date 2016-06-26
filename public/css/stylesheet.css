@@ -12,17 +12,30 @@ h1 {
 }
 
 h2, h3 {
-  color: #0073e6;
+  color: #6c994d;
   margin-bottom: 0;
+}
+
+h2 {
+  margin: 15px 0;
 }
 
 img {
   z-index: 1;
 }
 
+.container {
+  background-color: #eaeedd;
+  margin-top: 5px;
+}
+
 .smallButton {
   font-family: 'Palatino', Impact, Helvetica, Arial, sans-serif;
   font-size: 14px;
-  background-color: #80bfff;
+  background-color: #cad4aa;
   margin-top: 3px;
+}
+
+.petRecord {
+  height: 300px;
 }
