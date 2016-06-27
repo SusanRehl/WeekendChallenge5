@@ -9,6 +9,8 @@
    <script src="scripts/script.js" type="text/javascript"></script>
  </head>
  <body align="center">
+   <div ng-include="'partials/add.html'"></div>
+   <div ng-include="'partials/delete.html'"></div>
    <div ng-controller = 'petController' ng-init='getPets()'>
      <img ng-src="https://s32.postimg.org/szn2qch5h/catanddog.jpg"></img>
      <h1>The Pets of Nu Cohort</h1>

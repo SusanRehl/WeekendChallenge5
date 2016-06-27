@@ -7,7 +7,7 @@ var mongoose = require('mongoose');  // require mongoose for mongo db
 
 app.use( bodyParser.json() );
 
-mongoose.connect('localhost:/27017/petsdb');
+mongoose.connect('localhost:27017/petsdb');
 
 app.get( '/', function( req, res ){    // set basic url
   res.sendFile( path.resolve( 'views/index.html' ) );

@@ -1,7 +1,7 @@
 var myApp=angular.module( 'myApp', [] );
 // controller petController
 myApp.controller( 'petController', [ '$scope', '$http', function( $scope, $http){
-  var allThePets=[];
+  var allThePets=[]; // creates array used in deleting individual records
   $scope.addPet = function(){ // adds record on button click
     event.preventDefault();
     var objectToSend ={  // package object to send, with inputs
