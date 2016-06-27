@@ -1,7 +1,7 @@
 var myApp=angular.module( 'myApp', [] );
 // controller petController
 myApp.controller( 'petController', [ '$scope', '$http', function( $scope, $http){
-
+  var allThePets=[];
   $scope.addPet = function(){ // adds record on button click
     event.preventDefault();
     var objectToSend ={  // package object to send, with inputs
@@ -23,8 +23,6 @@ myApp.controller( 'petController', [ '$scope', '$http', function( $scope, $http)
     $scope.getPets(); // calls get pets function to refresh DOM
   }; // end addPets function
 
-var pets;
-
   $scope.getPets = function(){  // gets current recordset upon page load
     $http({   // gets recordset via GET
       method: 'GET',
@@ -38,27 +36,15 @@ var pets;
   }); // end error function
   }; // end getPets function
 
-  $scope.deletePet = function(index){ // deletes pet on button click - DOES NOT WORK
-    console.log('deleted pet clicked ');
-    $scope.pets.splice( index, 1 );
-    $http({  // removes object via DELETE
-      method: 'DELETE',
-      url: '/nupets/' + index,
-    }); // end remove call
-    success(function (data) {  // success message
-        $scope.status = "Pet Deleted";
-        $scope.getPets(); // calls get pets function to refresh DOM
-    }) //end success
-    .error(function (error) {  // error message
-        $scope.status = 'Unable to delete pet: ' + error.message;
-    }); //end error
+  $scope.deletePet = function(index){ // deletes pet on button click
+    var petToDelete = $scope.allThePets[index];  // removes the pet from the Dom
+    $scope.allThePets.splice(index, 1);
+    // console.log(petToDelete._id);
+    var petId = {id: petToDelete._id};  // creating object with the db id to send to server
+    $http({
+      method: 'POST',
+      url: '/deletePet',
+      data: petId
+    }); // end post
   }; // end deletePets function
-
-
-
 }]); // end controller
-
-// angular.module('app', []) // runs function upon page load - DOES NOT APPEAR TO BE DOING ANYTHING- SHIFTLESS LAZY BIT OF CODE..
-//   .controller('petsController', ['$scope', function($scope) {
-//     $scope.getPets();
-// }]); // end page load function

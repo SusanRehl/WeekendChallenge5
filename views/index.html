@@ -27,7 +27,7 @@
             <img ng-src='{{record.image}}'><br />
             <b>{{ record.name }}</b><br />
             {{ record.age}} year old {{ record.animal}}<br />
-            <button type="button" name="delButton"  class="smallButton" ng-click="deletePet()">Delete Pet</button>
+            <button type="button" name="delButton"  class="smallButton" ng-click="deletePet($index)">Delete Pet</button>
             <p> </p>
           </div>
         </div>

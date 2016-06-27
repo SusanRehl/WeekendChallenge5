@@ -37,19 +37,20 @@ app.post( '/add', function( req, res ){  // POST call
   console.log("new record from app.post: " + newRecord);
 });  // end post
 
-app.delete('/deletePet', function(req, res) {  // delete pet - DOES NOT WORK
-  console.log('delete route');
-  nupets.find({_id: _id}, function(err, petResult) {
+app.post('/deletePet', function(req, res) {  // delete pet
+  console.log(req.body.id);
+  nupets.findOne({'_id': req.body.id}, function(err, pet){
     if(err){
       console.log(err);
-      res.sendStatus(500);
-    } else{
-      console.log("in pet delete");
-      nupets.remove({_id: petResult._id}, function(err) {});
-      res.sendStatus(200);
-    } //end if else
-  }); //end find
-}); // end delete
-//
+    }else{
+  nupets.remove({'_id': req.body.id}, function(err) {
+    if(err){
+      console.log('remove ' + err);
+    }else{
+    }
+  });
+}
+});
+}); //end delete function
 
 app.use( express.static( 'public' ) );  // make public folder available
