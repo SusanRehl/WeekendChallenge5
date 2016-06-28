@@ -1,7 +1,9 @@
 var myApp=angular.module( 'myApp', [] );
 // controller petController
 myApp.controller( 'petController', [ '$scope', '$http', function( $scope, $http){
-  var allThePets=[]; // creates array used in deleting individual records
+
+  var allThePets=[]; // creates array used in deleting individual records, matches ng-repeat param in index.html
+
   $scope.addPet = function(){ // adds record on button click
     event.preventDefault();
     var objectToSend ={  // package object to send, with inputs
@@ -30,7 +32,6 @@ myApp.controller( 'petController', [ '$scope', '$http', function( $scope, $http)
     }).then( function( response ){  // success call - runs function with response parameter
       console.log(response);
       $scope.allThePets = response.data;  // pulls the data from app.js and sets to allThePets
-      pets = $scope.allThePets; // creates global var for use in deleting
     }, function myError( response ){
   console.log( response.statusText );
   }); // end error function

@@ -40,3 +40,7 @@ img {
 .petRecord {
   height: 300px;
 }
+
+#petUrl {
+  width: 300px;
+}

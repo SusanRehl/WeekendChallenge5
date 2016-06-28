@@ -7,15 +7,14 @@ var mongoose = require('mongoose');  // require mongoose for mongo db
 
 app.use( bodyParser.json() );
 
-mongoose.connect('localhost:27017/petsdb');
+mongoose.connect('localhost:27017/petsdb');  //no / after localhost!
 
 app.get( '/', function( req, res ){    // set basic url
   res.sendFile( path.resolve( 'views/index.html' ) );
 });
 
 app.get( '/view', function( req, res ){  // GET function to retrieve data
-  nupets.find() // MAGIC! - all new and existing are found here
-  .then( function( data ){  // similar to ajax get call - if found, then run function with data as parameter
+  nupets.find().then( function( data ){  // MAGIC! - all new and existing are found here// similar to ajax get call - if found, then run function with data as parameter
     // console.log("data from app" + data);
     res.send( data );  // returns records as "data"
   });
@@ -32,7 +31,7 @@ app.post( '/add', function( req, res ){  // POST call
     age: req.body.age,
     image: req.body.image
   };  // end var
-  var newRecord=nupets( recordToAdd );  // saves record to database
+  var newRecord=nupets( recordToAdd );  // saves record to database - use nupets - match what's on line 5
   newRecord.save();
   console.log("new record from app.post: " + newRecord);
 });  // end post
