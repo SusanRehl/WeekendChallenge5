@@ -9,31 +9,8 @@
    <script src="scripts/script.js" type="text/javascript"></script>
  </head>
  <body align="center">
-   <div ng-include="'partials/add.html'"></div>
-   <div ng-include="'partials/delete.html'"></div>
-   <div ng-controller = 'petController' ng-init='getPets()'>
+   <div ng-include="'partials/nav.html'"></div>
      <img ng-src="https://s32.postimg.org/szn2qch5h/catanddog.jpg"></img>
      <h1>The Pets of Nu Cohort</h1>
-     <p></p>
-     <h3>Add YOUR Pet!</h3>
-     <input type= "text" ng-model= "petNameBinder" value= "" placeholder="pet name" required>
-     <input type= "text" ng-model= "petAnimalBinder" value= "" placeholder="type of animal">
-     <input type= "text" ng-model= "petAgeBinder" value= "" placeholder="pet age">
-     <input type= "text" id="petUrl" ng-model= "imageBinder" value= "" placeholder="pet image url">
-     <button type="button" name="subButton" class="smallButton" ng-click= "addPet()" >Add Your Pet</button><br />
-     <div class="container">
-        <h2>The Pets of Nu</h2>
-        <p></p>
-        <div class="row">
-          <div class="petRecord col-md-4" ng-repeat='record in allThePets'>
-            <img ng-src='{{record.image}}'><br />
-            <b>{{ record.name }}</b><br />
-            {{ record.age}} year old {{ record.animal}}<br />
-            <button type="button" name="delButton"  class="smallButton" ng-click="deletePet($index)">Delete Pet</button>
-            <p> </p>
-          </div>
-        </div>
-      </div>
-    </div>
 </body>
 </html>

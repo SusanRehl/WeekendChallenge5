@@ -14,11 +14,27 @@ app.get( '/', function( req, res ){    // set basic url
 });
 
 app.get( '/view', function( req, res ){  // GET function to retrieve data
+  res.sendFile( path.resolve( 'views/view.html' ) );
+  });
+
+app.get('/viewPets', function(req, res){
+  nupets.find().then( function( data ){  // MAGIC! - all new and existing are found here// similar to ajax get call - if found, then run function with data as parameter
+      // console.log("data from app" + data);
+    res.send( data );  // returns records as "data"
+  });
+});
+
+app.get( '/add', function( req, res ){  // GET function to retrieve data
+  res.sendFile( path.resolve( 'views/add.html' ) );
+  });
+
+app.get( '/addPet', function( req, res ){  // GET function to retrieve data
   nupets.find().then( function( data ){  // MAGIC! - all new and existing are found here// similar to ajax get call - if found, then run function with data as parameter
     // console.log("data from app" + data);
     res.send( data );  // returns records as "data"
   });
 }); //end get
+
 
 app.listen( 8080, 'localhost', function( req, res ){ // spins up server
   console.log( 'listening on 8080' );
@@ -35,6 +51,30 @@ app.post( '/add', function( req, res ){  // POST call
   newRecord.save();
   console.log("new record from app.post: " + newRecord);
 });  // end post
+
+
+//Lukas' code
+app.post('/newPet', function(req, res){
+	var newPet = new Pets( {
+	  name: req.body.name,
+ 	 animal_type: req.body.type,
+	  age_years: req.body.age,
+	  img_url: req.body.img_url
+	});
+  	newPet.save(function(err){
+ 	   if(err) {
+ 	     console.log(err);
+ 	   } else {
+  	    console.log('Pet saved successfully!');
+ 	     res.sendStatus(200);
+	    }
+	  });
+});
+
+
+
+
+
 
 app.post('/deletePet', function(req, res) {  // delete pet
   console.log(req.body.id);

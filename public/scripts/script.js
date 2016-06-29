@@ -1,8 +1,8 @@
 var myApp=angular.module( 'myApp', [] );
-// controller petController
-myApp.controller( 'petController', [ '$scope', '$http', function( $scope, $http){
 
-  var allThePets=[]; // creates array used in deleting individual records, matches ng-repeat param in index.html
+var allThePets=[]; // creates array used in deleting individual records, matches ng-repeat param in index.html
+
+myApp.controller( 'addController', [ '$scope', '$http', function( $scope, $http){
 
   $scope.addPet = function(){ // adds record on button click
     event.preventDefault();
@@ -22,13 +22,15 @@ myApp.controller( 'petController', [ '$scope', '$http', function( $scope, $http)
     $scope.petAgeBinder ='';
     $scope.imageBinder = "";
     console.log(objectToSend);
-    $scope.getPets(); // calls get pets function to refresh DOM
   }; // end addPets function
+}]);  //end addCOntroller
+
+myApp.controller( 'viewController', [ '$scope', '$http', function( $scope, $http){
 
   $scope.getPets = function(){  // gets current recordset upon page load
     $http({   // gets recordset via GET
       method: 'GET',
-      url: '/view',
+      url: '/viewPets',
     }).then( function( response ){  // success call - runs function with response parameter
       console.log(response);
       $scope.allThePets = response.data;  // pulls the data from app.js and sets to allThePets
@@ -48,4 +50,4 @@ myApp.controller( 'petController', [ '$scope', '$http', function( $scope, $http)
       data: petId
     }); // end post
   }; // end deletePets function
-}]); // end controller
+}]); // end viewController
